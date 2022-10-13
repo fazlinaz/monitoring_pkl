@@ -42,6 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), username.getText().toString(), Toast.LENGTH_SHORT).show();
                 user = username.getText().toString();
                 pass = password.getText().toString();
+
+    //            Log.d("TAG", "onClick: "+user + " " + pass);
+
                 confirpass = confirpassword.getText().toString();
 //                if (confirpass.equals(pass)){
                     moveToRegister(user, pass);
@@ -53,12 +56,14 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void moveToRegister(String user, String pass) {
-//        Log.d("TAG", "moveToRegister: "+user + ":" + pass);
+
+    Log.d("TAG", "moveToRegister: "+user + ":" + pass);
         ApiInterface apiInterface = Apiserver.getClient().create(ApiInterface.class);
         Call<ResponseLogin> call = apiInterface.register(user, pass);
         call.enqueue(new Callback<ResponseLogin>() {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                Log.d("TAG", "onResponse: "+response.body().getMassage());
                 if (response.isSuccessful()) {
                     Toast.makeText(RegisterActivity.this, "Berhasil mendaftar", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));

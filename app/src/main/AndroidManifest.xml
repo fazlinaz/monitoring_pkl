@@ -16,7 +16,9 @@
         android:theme="@style/Theme.Monitoring_pkl"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ProfilActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="false" />
